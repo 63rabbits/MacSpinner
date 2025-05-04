@@ -50,13 +50,12 @@ class ViewController: NSViewController {
     let windowMinHeight = CGFloat(100)
 
     func moveWindowToCenter() {
-        let screenFrame = NSScreen.main?.frame
-        let window = self.view.window!
+        let sw = NSScreen.main?.frame.width ?? 200
+        let sh = NSScreen.main?.frame.height ?? 200
+        // let sx = NSScreen.main?.frame.origin.x ?? 0
+        // let sy = NSScreen.main?.frame.origin.y ?? 0
 
-        let sw = screenFrame?.width ?? 200
-        let sh = screenFrame?.height ?? 200
-        let sx = screenFrame?.origin.x ?? 0
-        let sy = screenFrame?.origin.y ?? 0
+        let window = self.view.window!
 
         // Set window size
         window.minSize = NSSize(width: windowMinWidth, height: windowMinHeight)
@@ -75,18 +74,12 @@ class ViewController: NSViewController {
             // ^ Screen Y          | Window
             // |            Origin *-----
             // +-> Screen X
-            let x = (sw - window.frame.width) / 2
-            let y = (sh - window.frame.height) / 2
-            let origin = NSPoint(x: sx + x, y: sy + y)
-            window.setFrameOrigin(origin)
-
-//            print("window-x= \(window.frame.origin.x), " +
-//                  "window-y = \(window.frame.origin.y), " + "\n" +
-//                  "windw-width= \(window.frame.width), " +
-//                  "window-height= \(window.frame.size.height), " + "\n" +
-//                  "screen-with= \(sw), " +
-//                  "screen-height= \(sh)"
-//            )
+            window.setFrameOrigin(
+                NSPoint(
+                    x: (sw - window.frame.width) / 2,
+                    y: (sh - window.frame.height) / 2
+                )
+            )
         }
         else {
             // The window is placed exactly in the center horizontally and
