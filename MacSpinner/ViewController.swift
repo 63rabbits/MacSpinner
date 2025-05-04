@@ -84,7 +84,7 @@ class ViewController: NSViewController {
         else {
             // The window is placed exactly in the center horizontally and
             // somewhat above center vertically.
-            view.window?.center()
+            window.center()
         }
         // Moves the window to the front of the screen list
         view.window?.makeKeyAndOrderFront(self)
